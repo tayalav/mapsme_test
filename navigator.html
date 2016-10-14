@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset='utf-8' />
+    <title></title>
+    <meta name='viewport' content='initial-scale=1,maximum-scale=1,user-scalable=no' />
+    <script src='https://api.tiles.mapbox.com/mapbox-gl-js/v0.24.0/mapbox-gl.js'></script>
+    <link href='https://api.tiles.mapbox.com/mapbox-gl-js/v0.24.0/mapbox-gl.css' rel='stylesheet' />
+    <style>
+        body { margin:0; padding:0; }
+        #map { position:absolute; top:0; bottom:0; width:100%; }
+    </style>
+</head>
+<body>
+
+<script src='https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-directions/v2.2.0/mapbox-gl-directions.js'></script>
+<link rel='stylesheet' href='https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-directions/v2.2.0/mapbox-gl-directions.css' type='text/css' />
+<div id='map'></div>
+
+<script>
+mapboxgl.accessToken = 'pk.eyJ1Ijoid2Fsa21hcCIsImEiOiJjaXI0d285eXIwMDR1aHRtOWQ3YWE3d2JtIn0.pqyo1f-gocUK9i819vmQBQ';
+var map = new mapboxgl.Map({
+    container: 'map',
+    style: 'mapbox://styles/walkmap/citzl1cir000o2iqd39rrhfx4',
+    center: [37.62174869542514,55.75043173814993],
+    zoom: 12,
+    pitch: 55,
+});
+
+map.addControl(new mapboxgl.Directions());
+map.addControl(new mapboxgl.Navigation());
+
+map.on('load', function() {
+  var style = map.getStyle();
+
+  style.layers.forEach(function(l) {
+    console.log(l);
+  });
+
+  map.setPaintProperty("directions-route-line", "line-color", "#009cff");
+  map.setPaintProperty("directions-route-line", "line-width", "8");
+
+});
+
+</script>
+
+</body>
+</html>
